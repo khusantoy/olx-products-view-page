@@ -18,10 +18,34 @@ class _GalleryViewState extends State<GalleryView> {
       color: Colors.white,
       child: Column(
         children: [
-          Image.asset(
-            "assets/images/placeholder.png",
-            fit: BoxFit.cover,
-          ),
+          Stack(children: [
+            Image.asset(
+              "assets/images/placeholder.png",
+              fit: BoxFit.cover,
+            ),
+            Positioned(
+              bottom: 0,
+              child: Container(
+                width: 60,
+                height: 40,
+                decoration: const BoxDecoration(
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(5),
+                    )),
+                child: const Center(
+                  child: Text(
+                    'Top',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ]),
           Padding(
             padding: const EdgeInsets.all(15),
             child: Column(

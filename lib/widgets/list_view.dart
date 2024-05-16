@@ -21,15 +21,39 @@ class _ListViewProductState extends State<ListViewProduct> {
           children: [
             Expanded(
               flex: 3,
-              child: Container(
-                height: double.infinity,
-                decoration: const BoxDecoration(
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/images/placeholder.png"),
+              child: Stack(children: [
+                Container(
+                  height: double.infinity,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage("assets/images/placeholder.png"),
+                    ),
                   ),
                 ),
-              ),
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    width: 60,
+                    height: 40,
+                    decoration: const BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(5),
+                        )),
+                    child: const Center(
+                      child: Text(
+                        'Top',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ]),
             ),
             Expanded(
               flex: 5,

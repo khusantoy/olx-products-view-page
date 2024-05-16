@@ -31,7 +31,8 @@ class _MyAppState extends State<MyApp> {
                   view = 'gallery';
                 }
               },
-              icon: const Icon(Icons.swap_vert),
+              icon: IconButton(
+                  onPressed: () {}, icon: const Icon(Icons.swap_vert)),
             ),
             PopupMenuButton(
               icon: view == 'gallery'
