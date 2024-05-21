@@ -2,15 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class GalleryView extends StatefulWidget {
-  const GalleryView({super.key});
+  final String title;
+  final String imageName;
+  final String price;
+  final String location;
+  final String date;
+  bool isLiked;
+
+  GalleryView({
+    required this.title,
+    required this.imageName,
+    required this.price,
+    required this.location,
+    required this.date,
+    required this.isLiked,
+    super.key,
+  });
 
   @override
   State<GalleryView> createState() => _GalleryViewState();
 }
 
 class _GalleryViewState extends State<GalleryView> {
-  bool isClicked = false;
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -19,9 +32,13 @@ class _GalleryViewState extends State<GalleryView> {
       child: Column(
         children: [
           Stack(children: [
-            Image.asset(
-              "assets/images/placeholder.png",
-              fit: BoxFit.cover,
+            SizedBox(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.4,
+              child: Image.asset(
+                widget.imageName,
+                fit: BoxFit.cover,
+              ),
             ),
             Positioned(
               bottom: 0,
@@ -29,10 +46,11 @@ class _GalleryViewState extends State<GalleryView> {
                 width: 60,
                 height: 40,
                 decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(5),
-                    )),
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(5),
+                  ),
+                ),
                 child: const Center(
                   child: Text(
                     'Top',
@@ -54,11 +72,11 @@ class _GalleryViewState extends State<GalleryView> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Expanded(
+                    Expanded(
                       flex: 2,
                       child: Text(
-                        "Lorem ipsum dolor sit amet Duis tempor Lorem duis .",
-                        style: TextStyle(
+                        widget.title,
+                        style: const TextStyle(
                           fontSize: 16,
                         ),
                       ),
@@ -69,22 +87,22 @@ class _GalleryViewState extends State<GalleryView> {
                         child: IconButton(
                           onPressed: () {
                             setState(() {
-                              isClicked = !isClicked;
+                              widget.isLiked = !widget.isLiked;
                             });
                           },
                           icon: Icon(
-                            isClicked
+                            widget.isLiked
                                 ? CupertinoIcons.heart_fill
                                 : CupertinoIcons.heart,
-                            color: isClicked ? Colors.blue : null,
+                            color: widget.isLiked ? Colors.blue : null,
                           ),
                         ),
                       ),
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Container(
                   width: 60,
@@ -100,28 +118,28 @@ class _GalleryViewState extends State<GalleryView> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
-                const Text(
-                  "50 000 sum",
-                  style: TextStyle(
+                Text(
+                  widget.price,
+                  style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(
-                  height: 10,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
                 ),
-                const Text(
-                  "Tashkent, Chilanzar district",
-                  style: TextStyle(
+                Text(
+                  widget.location,
+                  style: const TextStyle(
                     color: Colors.grey,
                   ),
                 ),
-                const Text(
-                  "16 May 2024",
-                  style: TextStyle(
+                Text(
+                  widget.date,
+                  style: const TextStyle(
                     color: Colors.grey,
                   ),
                 )

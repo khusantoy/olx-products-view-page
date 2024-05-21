@@ -2,7 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ListViewProduct extends StatefulWidget {
-  const ListViewProduct({super.key});
+  final String title;
+  final String imageName;
+  final String price;
+  final String location;
+  final String date;
+  bool isLiked;
+
+  ListViewProduct({
+    required this.title,
+    required this.imageName,
+    required this.price,
+    required this.location,
+    required this.date,
+    required this.isLiked,
+    super.key,
+  });
 
   @override
   State<ListViewProduct> createState() => _ListViewProductState();
@@ -24,10 +39,10 @@ class _ListViewProductState extends State<ListViewProduct> {
               child: Stack(children: [
                 Container(
                   height: double.infinity,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage("assets/images/placeholder.png"),
+                      image: AssetImage(widget.imageName),
                     ),
                   ),
                 ),
@@ -65,11 +80,11 @@ class _ListViewProductState extends State<ListViewProduct> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Expanded(
+                        Expanded(
                           flex: 2,
                           child: Text(
-                            "Lorem ipsum dolor sit amet...",
-                            style: TextStyle(
+                            widget.title,
+                            style: const TextStyle(
                               fontSize: 16,
                             ),
                           ),
@@ -80,26 +95,26 @@ class _ListViewProductState extends State<ListViewProduct> {
                             child: IconButton(
                               onPressed: () {
                                 setState(() {
-                                  isClicked = !isClicked;
+                                  widget.isLiked = !widget.isLiked;
                                 });
                               },
                               icon: Icon(
-                                isClicked
+                                widget.isLiked
                                     ? CupertinoIcons.heart_fill
                                     : CupertinoIcons.heart,
-                                color: isClicked ? Colors.blue : null,
+                                color: widget.isLiked ? Colors.blue : null,
                               ),
                             ),
                           ),
                         )
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
                     ),
                     Container(
-                      width: 50,
-                      height: 30,
+                      width: MediaQuery.of(context).size.width * 0.12,
+                      height: MediaQuery.of(context).size.width * 0.07,
                       decoration: BoxDecoration(
                         color: const Color(0xFFF0F0F5),
                         borderRadius: BorderRadius.circular(5),
@@ -111,31 +126,31 @@ class _ListViewProductState extends State<ListViewProduct> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
                     ),
-                    const Text(
-                      "50 000 sum",
-                      style: TextStyle(
+                    Text(
+                      widget.price,
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
                     ),
-                    const Text(
-                      "Tashkent, Chilanzar district",
-                      style: TextStyle(
+                    Text(
+                      widget.location,
+                      style: const TextStyle(
                         color: Colors.grey,
                       ),
                     ),
-                    const Text(
-                      "16 May 2024",
-                      style: TextStyle(
+                    Text(
+                      widget.date,
+                      style: const TextStyle(
                         color: Colors.grey,
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),
