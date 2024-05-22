@@ -13,51 +13,66 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
+class ProducModel {
+  final String title;
+  final String imageName;
+  final double price;
+  final String location;
+  final String date;
+  final bool isLiked;
+
+  ProducModel({
+    required this.title,
+    required this.imageName,
+    required this.price,
+    required this.location,
+    required this.date,
+    required this.isLiked,
+  });
+}
+
 class _MyAppState extends State<MyApp> {
-  List<Map<String, dynamic>> products = [
-    {
-      'title': 'Cobalt mexanika sotiladi Oqrangda 0 km yurgan',
-      'image': 'assets/images/cobalt.png',
-      'location': 'Toshkent, Shayhontohur tumani',
-      'date': '2023-12-03',
-      'price': '160 000 000',
-      'isLiked': false
-    },
-    {
-      'title': 'Damas yangi 2024 shot',
-      'image': 'assets/images/damas.png',
-      'location': 'Toshkent, Olmazor tumani',
-      'date': '2024-05-14',
-      'price': '104 246 166',
-      'isLiked': false
-    },
-    {
-      'title': 'Foto aparat Zenit',
-      'image': 'assets/images/camera.png',
-      'location': 'Toshkent, Shayhontohur tumani',
-      'date': '2024-05-12',
-      'price': '150 000',
-      'isLiked': false
-    },
-    {
-      'title': 'Yandex Termo Sumka Xolati yengi Narxi 250000 so\'m.',
-      'image': 'assets/images/yandex.png',
-      'location': 'Toshkent, Yakkasaroy tumani',
-      'date': '2024-04-23',
-      'price': '250 000',
-      'isLiked': false
-    },
-    {
-      'title': 'Lenovo, noutbuk ofis uchun, holati yaxshi, windows 10',
-      'image': 'assets/images/noutbuk.png',
-      'location': 'Toshkent, Yakkasaroy tumani',
-      'date': '2024-04-21',
-      'price': '1 290 000',
-      'isLiked': false
-    },
+  List<ProducModel> products = [
+    ProducModel(
+      title: 'Cobalt mexanika sotiladi Oqrangda 0 km yurgan',
+      imageName: 'assets/images/cobalt.png',
+      price: 160000000.0,
+      location: 'Toshkent, Shayhontohur tumani',
+      date: '2023-12-03',
+      isLiked: false,
+    ),
+    ProducModel(
+        title: 'Damas yangi 2024 shot',
+        imageName: 'assets/images/damas.png',
+        location: 'Toshkent, Olmazor tumani',
+        date: '2024-05-14',
+        price: 104246166,
+        isLiked: false),
+    ProducModel(
+      title: 'Foto aparat Zenit',
+      imageName: 'assets/images/camera.png',
+      location: 'Toshkent, Shayhontohur tumani',
+      date: '2024-05-12',
+      price: 150000,
+      isLiked: false,
+    ),
+    ProducModel(
+        title: 'Yandex Termo Sumka Xolati yengi Narxi 250000 so\'m.',
+        imageName: 'assets/images/yandex.png',
+        location: 'Toshkent, Yakkasaroy tumani',
+        date: '2024-04-23',
+        price: 250000,
+        isLiked: false),
+    ProducModel(
+        title: 'Lenovo, noutbuk ofis uchun, holati yaxshi, windows 10',
+        imageName: 'assets/images/noutbuk.png',
+        location: 'Toshkent, Yakkasaroy tumani',
+        date: '2024-04-21',
+        price: 1290000,
+        isLiked: false),
   ];
 
-  List<Map<String, dynamic>> searched = [];
+  List<ProducModel> searched = [];
 
   String view = 'gallery';
 
@@ -81,7 +96,7 @@ class _MyAppState extends State<MyApp> {
                   for (var i in products) {
                     if (value.isEmpty) {
                       searched.clear();
-                    } else if (i['title']
+                    } else if (i.title
                             .toLowerCase()
                             .contains(value.toLowerCase()) &&
                         value != '' &&
@@ -163,29 +178,29 @@ class _MyAppState extends State<MyApp> {
                   for (var product in products)
                     view == 'gallery'
                         ? GalleryView(
-                            title: product['title'],
-                            imageName: product['image'],
-                            price: product['price'],
-                            location: product['location'],
-                            date: product['date'],
-                            isLiked: product['isLiked'],
+                            title: product.title,
+                            imageName: product.imageName,
+                            price: product.price,
+                            location: product.location,
+                            date: product.date,
+                            isLiked: product.isLiked,
                           )
                         : view == 'list'
                             ? ListViewProduct(
-                                title: product['title'],
-                                imageName: product['image'],
-                                price: product['price'],
-                                location: product['location'],
-                                date: product['date'],
-                                isLiked: product['isLiked'],
+                                title: product.title,
+                                imageName: product.imageName,
+                                price: product.price,
+                                location: product.location,
+                                date: product.date,
+                                isLiked: product.isLiked,
                               )
                             : GalleryView(
-                                title: product['title'],
-                                imageName: product['image'],
-                                price: product['price'],
-                                location: product['location'],
-                                date: product['date'],
-                                isLiked: product['isLiked'],
+                                title: product.title,
+                                imageName: product.imageName,
+                                price: product.price,
+                                location: product.location,
+                                date: product.date,
+                                isLiked: product.isLiked,
                               )
                 ],
               )
@@ -205,29 +220,29 @@ class _MyAppState extends State<MyApp> {
                   for (var product in searched)
                     view == 'gallery'
                         ? GalleryView(
-                            title: product['title'],
-                            imageName: product['image'],
-                            price: product['price'],
-                            location: product['location'],
-                            date: product['date'],
-                            isLiked: product['isLiked'],
+                            title: product.title,
+                            imageName: product.imageName,
+                            price: product.price,
+                            location: product.location,
+                            date: product.date,
+                            isLiked: product.isLiked,
                           )
                         : view == 'list'
                             ? ListViewProduct(
-                                title: product['title'],
-                                imageName: product['image'],
-                                price: product['price'],
-                                location: product['location'],
-                                date: product['date'],
-                                isLiked: product['isLiked'],
+                                title: product.title,
+                                imageName: product.imageName,
+                                price: product.price,
+                                location: product.location,
+                                date: product.date,
+                                isLiked: product.isLiked,
                               )
                             : GalleryView(
-                                title: product['title'],
-                                imageName: product['image'],
-                                price: product['price'],
-                                location: product['location'],
-                                date: product['date'],
-                                isLiked: product['isLiked'],
+                                title: product.title,
+                                imageName: product.imageName,
+                                price: product.price,
+                                location: product.location,
+                                date: product.date,
+                                isLiked: product.isLiked,
                               )
                 ],
               ),

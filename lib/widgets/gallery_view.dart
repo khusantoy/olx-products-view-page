@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class GalleryView extends StatefulWidget {
   final String title;
   final String imageName;
-  final String price;
+  final double price;
   final String location;
   final String date;
   bool isLiked;
@@ -122,7 +122,7 @@ class _GalleryViewState extends State<GalleryView> {
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Text(
-                  widget.price,
+                  widget.price.toString(),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
