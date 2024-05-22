@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class GalleryView extends StatefulWidget {
   final String title;
@@ -18,6 +19,8 @@ class GalleryView extends StatefulWidget {
     required this.isLiked,
     super.key,
   });
+
+  var formatter = NumberFormat('###,000');
 
   @override
   State<GalleryView> createState() => _GalleryViewState();
@@ -122,7 +125,7 @@ class _GalleryViewState extends State<GalleryView> {
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Text(
-                  widget.price.toString(),
+                  widget.formatter.format(widget.price),
                   style: const TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
